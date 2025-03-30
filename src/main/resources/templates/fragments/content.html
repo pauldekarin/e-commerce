@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:each="item : ${data}"
+         class="d-flex justify-content-between w-100 mt-4 py-4 px-2 rounded-4 flex-wrap"
+         style="background-color:#EBE1E3;box-shadow:4px 4px 0px #410B16;">
+        <div th:each="entry : ${item}" class="text-nowrap">
+            <span th:text="${entry.key}" style="color:gray;font-size:12px"></span>
+            <span th:text="${entry.value}"> </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

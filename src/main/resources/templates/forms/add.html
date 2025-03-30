@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="add" style="">
+    <form th:id="${form.getId()}" class="d-flex flex-nowrap align-items-center">
+        <div class="d-flex justify-content-between gap-4 border-4 py-4 px-2 flex-wrap" >
+            <div th:each="field : ${form.getFields()}" class="d-flex flex-column align-items-center justify-content-center">
+                <th:block th:if="${field.getTag() == 'input'}">
+                    <label th:text="${field.getLabel()}">  </label>
+                    <input th:type="${field.getType()}" th:placeholder="${field.getPlaceholder()}" th:name="${field.getName()}" th:id="${field.getId()}">
+                </th:block>
+
+                <th:block th:if="${field.getTag() == 'select'}">
+                    <label th:text="${field.getLabel()}"> </label>
+                    <select th:name="${field.getName()}" th:id="${field.getId()}">
+                        <option th:each="option : ${field.getOptions()}" th:text="${option.getName()}" th:value="${option.getValue()}"></option>
+                    </select>
+                </th:block>
+            </div>
+        </div>
+        <input type="submit" value="Submit" style="width:120px; height:40px"/>
+    </form>
+
+    <script th:inline="javascript">
+        const formTag = document.querySelector("#" + [[${form.getId()}]]);
+
+        console.log(formTag);
+        formTag.addEventListener("submit", (event) => {
+            console.log(123);
+            event.preventDefault();
+            add();
+        })
+
+         async function add(){
+            const formData = new FormData(formTag);
+
+            const uri = [[${form.getUri()}]];
+
+             try{
+                 const response = await fetch(uri,{
+                     method: "POST",
+                     headers:{
+                        'Content-Type':'application/json'
+                     },
+                     body: JSON.stringify(Object.fromEntries(formData))
+                 });
+
+                 console.log(await response.json())
+             }catch(e){
+
+             }
+             console.log(form);
+         }
+    </script>
+</div>
+
+</body>
+</html>

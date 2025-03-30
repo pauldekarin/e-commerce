@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:each="item : ${data}" class="d-flex">
+        <div th:each="entry : ${item}">
+            <span th:text="${entry.key}"> </span>
+            <span th:text="${entry.value}"> </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

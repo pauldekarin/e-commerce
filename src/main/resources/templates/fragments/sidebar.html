@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/styles/sidebar.css}" rel="stylesheet">
+</head>
+<body>
+<aside th:fragment="sidebar" id="sidebar">
+
+    <ul class="sidebar-nav p-2">
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("position") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/position}" class="sidebar-link">Positions</a>
+        </li>
+
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("employee") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/employee}" class="sidebar-link">Employees</a>
+        </li>
+
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("shop") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/shop}" class="sidebar-link">Shop</a>
+        </li>
+
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("goods_type") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/goods_type}" class="sidebar-link">Goods Types</a>
+        </li>
+
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("purchase_type") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/purchase_type}" class="sidebar-link">Purchase Types</a>
+        </li>
+
+        <li class="sidebar-item" th:classappend='${#httpServletRequest.getRequestURI().endsWith("purchase") ? "sidebar-item-active" : ""}'>
+            <a th:href="@{/purchase}" class="sidebar-link">Purchases</a>
+        </li>
+    </ul>
+
+</aside>
+</body>
+</html>
